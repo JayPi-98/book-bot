@@ -12,15 +12,18 @@ def get_num_characters(text):
             chars[lowered] = 1
     return chars
 
+def sort_on(items):
+    return items["num"]
 
-def report(chars, total_words):
-    print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
-    print("----------- Word Count ----------")
-    print(f"Found {total_words} total words")
-    print("--------- Character Count -------")
-    for c in sorted(chars):
-        if c.isalpha():
-            print(f"'{c}': {chars[c]}")
-    print("============= END ===============")
+def total_chars(chars):
+    char_list = []
+
+    for c in chars:
+        entry = {"char": "", "num": 0}
+        entry["char"] = c
+        entry["num"] = chars[c]
+        char_list.append(entry)
+    char_list.sort(reverse=True, key=sort_on)
+
+    return char_list
 
